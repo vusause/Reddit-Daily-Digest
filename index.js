@@ -31,8 +31,10 @@ var reddit = new Snoocore({
   }
 });
 
+// used for basic mailer
 var message = "<ul>";
 
+// when called sends an email to with a list of posts and URls
 function mailer(to, posts) {
     posts.forEach(function(post) {
         message += "<li><a href='";
@@ -88,6 +90,7 @@ function mailerTemplate(to, posts) {
 });
 }
 
+// Called when want to get stories from hacker news also invokes mailer internally
 function addStories(ids, store, end, to) {
     
     var temp = store;
@@ -104,12 +107,13 @@ function addStories(ids, store, end, to) {
         if (err) {
             console.log("Uh, oh an error occurred");
         }
-        mailerTemplate(to, temp);
+        mailer(to, temp);
         console.log("reaches here");
         end();
     })
 }
 
+// gets subrreddit posts from profile and mails to user
 function getSubPosts(prof, callback) {
     
     var temp = [];
@@ -133,13 +137,14 @@ function getSubPosts(prof, callback) {
                     addStories(stories, temp, callback, prof.email);
                 });
             } else {
-                mailerTemplate(prof.email, temp);
+                mailer(prof.email, temp);
                 callback();
             }
         }
     });
 }
 
+// Handler
 exports.handler = (event, context, callback) => {
 
   async.each(profiles, getSubPosts, function (err) {
