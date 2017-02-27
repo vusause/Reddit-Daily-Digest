@@ -1,0 +1,24 @@
+{
+  "name": "reddigest",
+  "version": "1.0.0",
+  "description": "An AWS lambda function that acts as a reddit daily digest",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/n/A.git"
+  },
+  "author": "Mike Vu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/n/A/issues"
+  },
+  "homepage": "https://github.com/n/A#readme",
+  "dependencies": {
+    "async": "^2.1.5",
+    "postmark": "^1.3.1",
+    "snoocore": "^3.3.1"
+  }
+}

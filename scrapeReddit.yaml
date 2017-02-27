@@ -1,0 +1,19 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Gets first 3 Reddit listings from subreddit
+Resources:
+  scrapeReddit:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs4.3
+      CodeUri: .
+      Description: Gets first 3 Reddit listings from subreddit
+      MemorySize: 128
+      Timeout: 59
+      Role: 'arn:aws:iam::596151330166:role/service-role/test'
+      Events:
+        Schedule1:
+          Type: Schedule
+          Properties:
+            Schedule: cron(0 10 * * ? *)
